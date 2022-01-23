@@ -27,7 +27,14 @@
           </el-tree>
         </el-aside>
         <!-- 课程播放 -->
-        <el-main>
+        <el-main v-if="isDoc">
+          <iframe :src="`https://view.officeapps.live.com/op/embed.aspx?src=${videoSourceId}&amp;wdAr=1.3333333333333333`" width="100%" height="100%" frameborder="0">
+            这是嵌入
+            <a target="_blank" href="https://office.com">Microsoft Office</a> 演示文稿，由
+            <a target="_blank" href="https://office.com/webapps">Office</a> 提供支持。
+          </iframe>
+        </el-main>
+        <el-main v-else>
           <h3 v-if="videoId !== ''">正在播放：{{ videoName }}</h3>
           <!-- 定义播放器dom -->
           <div id="J_prismPlayer" class="prism-player mt10" />
@@ -59,7 +66,9 @@ export default {
       videoName: '', // 记录当前正在播放的小节名称
       player: null, // 播放器
       allTime: 0, // 总共观看时长，对应字段learning_time
-      timer: {} // 计时器对象
+      timer: {}, // 计时器对象
+      isDoc: false,
+      videoSourceId: ''
     }
   },
 
@@ -75,9 +84,20 @@ export default {
         // 点到父节点直接return
         return
       }
-      this.videoId = data.id
-      this.videoName = data.title
-      this.getPlayAuthById(data.id)
+      // 获取文件原名字
+      const index = data.videoOriginalName.lastIndexOf('.')
+      const FileExt = data.videoOriginalName.substr(index + 1)
+      // 如果是文档课件
+      if (['pptx', 'doc', 'docx', 'xlsx'].indexOf(FileExt.toLowerCase()) !== -1) {
+        this.videoSourceId = data.videoSourceId
+        this.player = null
+        this.isDoc = true
+      } else {
+        this.videoId = data.id
+        this.videoName = data.title
+        this.isDoc = false
+        this.getPlayAuthById(data.id)
+      }
     },
     // 创建播放器
     getPlayer(vid, playAuth) {
