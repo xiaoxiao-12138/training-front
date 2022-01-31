@@ -142,12 +142,12 @@ export default {
               })
               // 登录
               // 把token存在cookie中
-              cookie.set('training_token', response.data.data.userToken, { domain: 'localhost' })
+              cookie.set('training_token', response.data.data.userToken, { domain: '120.25.144.146' })
               // 登录成功根据token获取用户信息
               loginApi.getLoginInfo().then(response => {
                 this.loginInfo = response.data.data.staffInfo
                 // 将用户信息记录cookie
-                cookie.set('training_userInfo', this.loginInfo, { domain: 'localhost' })
+                cookie.set('training_userInfo', this.loginInfo, { domain: '120.25.144.146' })
                 // 跳转页面
                 this.$router.push({ path: '/' })
               })

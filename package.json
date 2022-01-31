@@ -40,5 +40,11 @@
     "tinymce": "^5.7.1",
     "vue-awesome-swiper": "^3.1.3",
     "vue-quill-editor": "^3.0.6"
+  },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3000"
+    }
   }
 }

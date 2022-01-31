@@ -60,13 +60,14 @@ export default {
   },
 
   created() {
-    this.showInfo()
+    //this.showInfo()
   },
 
   mounted() {
     // 截取路由，切换菜单
     const defaultMenu = '/' + window.location.href.split('/')[3]
     this.activerouter = defaultMenu
+    this.showInfo()
   },
 
   methods: {
@@ -88,8 +89,8 @@ export default {
     logout() {
       this.isLogin = false
       // 清空用户信息和token
-      cookie.set('training_userInfo', '', { domain: 'localhost' })
-      cookie.set('training_token', '', { domain: 'localhost' })
+      cookie.set('training_userInfo', '', { domain: '120.25.144.146' })
+      cookie.set('training_token', '', { domain: '120.25.144.146' })
 
       // 回到首页
       window.location.href = '/'

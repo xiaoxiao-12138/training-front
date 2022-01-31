@@ -5,7 +5,7 @@ import { Message, MessageBox } from 'element-ui'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: 'http://localhost:8888',
+  baseURL: 'http://120.25.144.146:8888',
   timeout: 150000 // 请求超时时间
 })
 
