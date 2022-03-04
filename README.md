@@ -1,8 +1,8 @@
 ### 职工业务培训网站前台项目
 
-后端代码地址：https://github.com/hczs/training
+后端代码地址：https://github.com/xiaoxiao-12138/training
 
-效果展示：http://81.70.19.46/
+效果展示：http://120.25.144.146:3000/
 
 ### Build Setup
 
